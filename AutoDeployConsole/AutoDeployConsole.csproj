@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{05D09B2D-5152-486E-AC22-3898458F901B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AutoDeployConsole</RootNamespace>
+    <AssemblyName>AutoDeployConsole</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Benlai.Common, Version=1.2.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.1.2.7001.0\lib\net40\Benlai.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Common.Config, Version=1.2.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Config.1.2.7001.0\lib\net40\Benlai.Common.Config.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Common.Json, Version=1.2.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Json.1.2.7001.0\lib\net40\Benlai.Common.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Common.Log, Version=1.2.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Log.1.2.7001.0\lib\net40\Benlai.Common.Log.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Common.Net, Version=1.2.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Net.1.2.7001.0\lib\net40\Benlai.Common.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Performance.Cat, Version=2.1.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Performance.Cat.1.1.7001\lib\net40\Benlai.Performance.Cat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Log.1.2.7001.0\lib\net40\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Administration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Administration.7.0.0.0\lib\net20\Microsoft.Web.Administration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Management.Automation.dll.10.0.10586.0\lib\net40\System.Management.Automation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AutoDeployCommon\AutoDeployCommon.csproj">
+      <Project>{8b319b9c-f96e-4e39-992f-009d1a019a14}</Project>
+      <Name>AutoDeployCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

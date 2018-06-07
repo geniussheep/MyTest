@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>TestType</id>
+    <version>1.0.22-beta</version>
+    <title>TestType</title>
+    <authors>Benlai</authors>
+    <owners>Benlai</owners>
+    <requireLicenseAcceptance> false </requireLicenseAcceptance>
+    <description>TestType</description>
+    <releaseNotes> release Version </releaseNotes>
+    <copyright> Copyright 2015 </copyright>
+    <dependencies></dependencies>
+  </metadata>
+</package>

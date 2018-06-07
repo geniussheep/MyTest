@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CB4373FC-C857-4F47-A9FE-4FE6E7DE2B72}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TestAcquireLock</RootNamespace>
+    <AssemblyName>TestAcquireLock</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Benlai.Common, Version=1.2.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.1.2.7017\lib\net40\Benlai.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Benlai.Common.Config, Version=1.2.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Config.1.2.7017\lib\net40\Benlai.Common.Config.dll</HintPath>
+    </Reference>
+    <Reference Include="Benlai.Common.Json, Version=1.2.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Json.1.2.7003\lib\net40\Benlai.Common.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Benlai.Common.Kafka, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Kafka.1.0.7003\lib\net40\Benlai.Common.Kafka.dll</HintPath>
+    </Reference>
+    <Reference Include="Benlai.Common.Log, Version=1.2.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Log.1.2.7018\lib\net40\Benlai.Common.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Benlai.Common.MsgPack, Version=1.0.7000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.MsgPack.1.0.7002\lib\net40\Benlai.Common.MsgPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Benlai.Common.Net, Version=1.2.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Net.1.2.7014\lib\net40\Benlai.Common.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Benlai.Common.Redis, Version=2.0.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Redis.2.0.8017\lib\net40\Benlai.Common.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="Benlai.Diagnostics.Runtime, Version=0.8.31.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Performance.Cat.1.1.7019\lib\net40\Benlai.Diagnostics.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Benlai.Performance.Cat, Version=2.1.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Performance.Cat.1.1.7019\lib\net40\Benlai.Performance.Cat.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Log.1.2.7018\lib\net40\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MsgPack, Version=0.8.0.0, Culture=neutral, PublicKeyToken=a2625990d5dc0167, processorArchitecture=MSIL">
+      <HintPath>..\packages\MsgPack.Cli.0.8.0\lib\net35-client\MsgPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=3.9.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Redis.2.0.8017\lib\net40\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=3.9.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Redis.2.0.8017\lib\net40\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=3.9.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Redis.2.0.8017\lib\net40\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Redis.2.0.8017\lib\net40\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Baseclass.Contrib.Nuget.Output.2.1.0\build\net40\Baseclass.Contrib.Nuget.Output.targets" Condition="Exists('..\packages\Baseclass.Contrib.Nuget.Output.2.1.0\build\net40\Baseclass.Contrib.Nuget.Output.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此项目引用这台计算机上缺少的 NuGet 程序包。使用 NuGet 程序包还原可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Baseclass.Contrib.Nuget.Output.2.1.0\build\net40\Baseclass.Contrib.Nuget.Output.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Baseclass.Contrib.Nuget.Output.2.1.0\build\net40\Baseclass.Contrib.Nuget.Output.targets'))" />
+  </Target>
+</Project>

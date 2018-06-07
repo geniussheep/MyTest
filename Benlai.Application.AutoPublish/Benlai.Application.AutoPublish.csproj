@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3BD29798-B1B9-4E29-8F46-FC64CE882B47}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Benlai.Application.AutoPublish</RootNamespace>
+    <AssemblyName>Benlai.Application.AutoPublish</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartArguments>-d</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartArguments>-d</StartArguments>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Benlai.Common, Version=1.3.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.1.3.7005.0-beta\lib\net40\Benlai.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Common.Config, Version=1.3.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Config.1.3.7007.0-beta\lib\net40\Benlai.Common.Config.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Common.Json, Version=1.3.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Json.1.3.7001.0-beta\lib\net40\Benlai.Common.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Common.Log, Version=1.3.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Log.1.3.7000.0-beta\lib\net40\Benlai.Common.Log.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Common.Net, Version=1.3.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Net.1.3.7010.0-beta\lib\net40\Benlai.Common.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Configuration.Install, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Configuration.Install.1.2.7000-beta\lib\net40\Benlai.Configuration.Install.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Diagnostics.Runtime, Version=0.8.31.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Performance.Cat.1.2.7001-beta\lib\net40\Benlai.Diagnostics.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Performance.Cat, Version=2.2.6000.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Performance.Cat.1.2.7001-beta\lib\net40\Benlai.Performance.Cat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.SOA.Framework.Common, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.SOA.Framework.Common.2.1.1000-beta\lib\net40\Benlai.SOA.Framework.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.SOA.Framework.Core, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.SOA.Framework.Core.2.1.1005-beta\lib\net40\Benlai.SOA.Framework.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.SOA.Framework.Server, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.SOA.Framework.Server.2.1.1010-beta\lib\net45\Benlai.SOA.Framework.Server.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Benlai.Zookeeper, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Zookeeper.1.2.7002.0-beta\lib\net40\Benlai.Zookeeper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Log.1.3.7000.0-beta\lib\net40\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.SOA.Framework.Server.2.1.1010-beta\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.SOA.Framework.Server.2.1.1010-beta\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.SOA.Framework.Server.2.1.1010-beta\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Common.Json.1.3.7001.0-beta\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.SOA.Framework.Server.2.1.1010-beta\lib\net45\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spring.Threading, Version=1.0.0.22880, Culture=neutral, PublicKeyToken=b745dc0af8c84db9, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Zookeeper.1.2.7002.0-beta\lib\net40\Spring.Threading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Thrift, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.SOA.Framework.Core.2.1.1005-beta\lib\net40\Thrift.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ZooKeeperNet, Version=3.3.4.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Benlai.Zookeeper.1.2.7002.0-beta\lib\net40\ZooKeeperNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Configuration\AppConfig.cs" />
+    <Compile Include="Controllers\ValueController.cs" />
+    <Compile Include="Models\Value.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Install\ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Install\ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Install\MainService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Install\MainService.Designer.cs">
+      <DependentUpon>MainService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppStart\AppServer.cs" />
+    <Compile Include="AppStart\SOAServiceHost.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="scanv.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

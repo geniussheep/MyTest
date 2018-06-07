@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+    <script>
+        $(function () {
+            $("#Upload").click(function () {
+                var formData = new FormData();
+                var totalFiles = document.getElementById("file").files.length;
+                for (var i = 0; i < totalFiles; i++) {
+                    var file = document.getElementById("file").files[i];
+
+                    formData.append("file", file);
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '/Home/Upload',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        if (data.Success) {
+                            alert(data.Data);
+
+                        } else {
+                            alert(data.Msg);
+                        }
+                    },
+                    error: function (error) {
+                        alert("errror");
+                    }
+                });
+            });
+
+        });
+
+    </script>
+    <input type="file" name="file" id="file" multiple />
+<input type="button" id="Upload" value="Upload"/>
+
+<div>yy test</div>

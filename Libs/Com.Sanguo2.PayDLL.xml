@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.Sanguo2.PayDLL</name>
+    </assembly>
+    <members>
+        <member name="M:Com.Sanguo2.PayDLL.Common.CommonMD5.User32Md5(System.String)">
+            <summary>
+            MD5　32位加密
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.Sanguo2.PayDLL.Common.CommonMD5.GetRandomSeed">
+            <summary>
+            产生随机种子
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.Sanguo2.PayDLL.Common.CommonMD5.GetOrderId">
+            <summary>
+            生成ORDERID
+            </summary>       
+        </member>
+        <member name="M:Com.Sanguo2.PayDLL.Common.HttpGet.HttpGetFunction(System.String,System.Int32,System.Text.Encoding)">
+            <summary>
+            
+            </summary>
+            <param name="url">URL</param>
+            <param name="timeOut">超时时间</param>
+            <param name="encoding">编码格式默认为Encoding.Default</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.Sanguo2.PayDLL.Model.QueryModel">
+            <summary>
+            查询余额
+            </summary>
+        </member>
+        <member name="P:Com.Sanguo2.PayDLL.Model.QueryModel.ret">
+            <summary>
+            通用返回协议，为0表示成功，非0表示失败
+            0：成功
+            -1：请求不存在
+            -2：请求超时
+            -3：参数错误
+            -4：系统错误
+            -5：认证失败
+            -6：访问被拒绝（不允许做特定操作）
+            </summary>
+        </member>
+        <member name="P:Com.Sanguo2.PayDLL.Model.QueryModel.msg">
+            <summary>
+            返回代码对应的描述，ret为非0时表示错误信息
+            </summary>
+        </member>
+        <member name="P:Com.Sanguo2.PayDLL.Model.QueryModel.data">
+            <summary>
+            接口返回的附加信息（真正的返回值）
+            </summary>
+        </member>
+        <member name="P:Com.Sanguo2.PayDLL.Model.ReturnData.result">
+            <summary>
+            查询错误码，参见计费错误码
+            -105001	计费账户信息不全
+            -105003	计费总账户不存在
+            -105004 	计费总账户已锁定
+            -600200001	数据库异常
+            -100601/-100802 (直扣)  	扣费货币类型错误
+            -100602/-100803 (直扣) 	消费类型错误
+            -100603/-100804(直扣) 	预冻值不可以小于0
+            -100605/-100805(直扣) 	地图编号不可为空
+            -100606/-100807(直扣)	预冻订单号不可为空
+            -100607/-100809(直扣)	预冻订单号长度错误
+            -100608	客户端预冻时间有误
+            -100609/-100808 	预冻订单号重复
+            -100600,-100801  	该账户余额不足
+            -100699,-100599, -100899	数据库错误
+            -600200001	数据库异常
+            -105022 	物品单价总和不等于总价
+            -105020,-105021	消费明细格式错误
+            </summary>
+        </member>
+        <member name="P:Com.Sanguo2.PayDLL.Model.ReturnData.userid">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Com.Sanguo2.PayDLL.Model.ReturnData.balance">
+            <summary>
+            货币余额
+            </summary>
+        </member>
+        <member name="P:Com.Sanguo2.PayDLL.Model.ReturnData.expire_time">
+            <summary>
+            过期时间(1970-1-1 00:00:00到现在的秒数，utc时间)
+            </summary>
+        </member>
+        <member name="P:Com.Sanguo2.PayDLL.Model.ReturnData.orderid">
+            <summary>
+            交易订单号
+            </summary>
+        </member>
+        <member name="P:Com.Sanguo2.PayDLL.Model.ReturnData.paytype">
+            <summary>
+            货币类型 
+            </summary>
+        </member>
+        <member name="M:Com.Sanguo2.PayDLL.Pay.QueryPayNum(System.UInt64,System.Int32)">
+            <summary>
+            铜钱玉查询接口
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="payType">货币类型 32铜钱，33玉</param>
+            <returns>Model.QueryModel</returns>
+        </member>
+        <member name="M:Com.Sanguo2.PayDLL.Pay.SendPayNum(System.UInt64,System.Int32,System.Int32,System.String)">
+            <summary>
+            赠送货币
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="payType">货币类型 32铜钱，33玉</param>
+            <param name="amount">货币数量</param>
+            <returns>Model.QueryModel</returns>
+        </member>
+        <member name="M:Com.Sanguo2.PayDLL.Pay.LockPayNum(System.UInt64,System.Int32,System.Int32,System.Int32,System.Int32,System.String)">
+             <summary>
+             赠币（声望）扣除（预冻/直扣）
+             </summary>
+             <param name="userId">用户ID</param>
+             <param name="amount">预冻/直扣 数量</param>
+             <param name="appType">32	铜钱活动消耗   33	玉商城消耗</param>
+             <param name="payType">支付类型</param>
+             <param name="flags">标识：
+            1：预冻模式，需要调用解冻接口确认交易或者回滚交易
+            应用场景：只有在玩家获取到道具的时候才实际确认交易
+            模型：预冻(lock)->发道具或使用功能->解冻或回滚(unlock)
+            2：直扣模式，无需调用解冻接口，直接扣除用户指定额度</param>
+             <param name="goods">购物明细：
+             格式：道具id:道具数量:道具单价:折扣率
+             多个明细用逗号分隔，明细中的价格之和必须等于amount
+             例:10001:1:10:100,10002:2:50:100
+             amount*discount=110 = 1*10*折扣 + 2*50*折扣</param>
+             <returns> Model.QueryModel</returns>
+        </member>
+        <member name="M:Com.Sanguo2.PayDLL.Pay.UnLockPayNum(System.UInt64,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String)">
+             <summary>
+             解冻接口
+             </summary>
+             <param name="userId">用户ID</param>
+             <param name="amount">扣费额度</param>
+             <param name="appType">32	铜钱活动消耗   33	玉商城消耗</param>
+             <param name="payType">支付类型</param>
+             <param name="flags">标标识：
+            1：交易确认，实际扣除用户预冻的额度
+            0：交易回滚，取消交易</param>
+             <param name="goods">购物明细：
+             格式：道具id:道具数量:道具单价:折扣率
+             多个明细用逗号分隔，明细中的价格之和必须等于amount
+             例:10001:1:10:100,10002:2:50:100
+             amount*discount=110 = 1*10*折扣 + 2*50*折扣</param>
+             <param name="orderId">交易订单号，预冻接口返回的订单号</param>
+             <returns>Model.QueryModel</returns>
+        </member>
+    </members>
+</doc>
