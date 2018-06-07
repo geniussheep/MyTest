@@ -94,10 +94,10 @@ namespace ConsoleTaskPool.TaskPoolService
         private void ExecuteTask()
         {
             var currentTaskId = Thread.CurrentThread.ManagedThreadId;
-            string debugStr = $"$Thread -- {currentTaskId} -- ";
+            string debugStr = $"Thread -- {currentTaskId}";
             while (!_isFinished)
             {
-                LogInfoWriter.GetInstance().Info($"{debugStr} --Check Start [isFinished:{_isFinished}, taskInfoList:{_taskInfoList.Count()}, hasCompleteTaskInfoList:{_hasCompleteTaskInfoList.Count()}, runningTaskInfoDic:{_runningTaskInfoDic.Count()}]");
+                LogInfoWriter.GetInstance().Info($"{debugStr} --Check Start [taskInfoList:{_taskInfoList.Count()}, hasCompleteTaskInfoList:{_hasCompleteTaskInfoList.Count()}, runningTaskInfoDic:{_runningTaskInfoDic.Count()}]");
                 Thread.Sleep(1000);
                 lock (_runningTaskInfoDic)
                 {
@@ -173,21 +173,23 @@ namespace ConsoleTaskPool.TaskPoolService
 
                         while ((_runningTaskInfoDic.Values.Any(s => s.IsFailed) || _hasCompleteTaskInfoList.Any(s => s.IsFailed)) && _runningTaskInfoDic.Values.Any(s=>!s.IsCompleted))
                         {
-                            LogInfoWriter.GetInstance().Info($"{debugStr} -- Execute there has some task failed ,so wait all current running task has finished!");
+                            LogInfoWriter.GetInstance().Info($"{debugStr} -- Execute Wait [taskInfoList:{_taskInfoList.Count()}, hasCompleteTaskInfoList:{_hasCompleteTaskInfoList.Count()}, runningTaskInfoDic:{_runningTaskInfoDic.Count()}]");
+                            LogInfoWriter.GetInstance().Info($"{debugStr} -- Execute Wait there has some task failed ,so wait all current running task has finished!");
+                            LogInfoWriter.GetInstance().Info($"{debugStr} -- Execute Wait [runningTaskInfoDic:{_runningTaskInfoDic.Values.Select(s=>s.TaskName + ":[" +s.IsFailed+","+s.IsCompleted+"]").Aggregate((s,r)=>s+" - "+r)}]");
                             Thread.Sleep(1000);
                         }
                         if(_runningTaskInfoDic.ContainsKey(currentTaskId))
                         {
+                            LogInfoWriter.GetInstance().Info($"{debugStr} -- Execute Add [runningTaskInfoDic:{_runningTaskInfoDic.Values.Select(s => s.TaskName + ":[" + s.IsFailed + "," + s.IsCompleted + "]").Aggregate((s, r) => s + " - " + r)}]");
+                            LogInfoWriter.GetInstance().Info($"{debugStr} --Execute Add {task.TaskName} HasComplete and Remove running");
                             _runningTaskInfoDic.Remove(currentTaskId);
                             _hasCompleteTaskInfoList.Add(task);
-                            LogInfoWriter.GetInstance().Info($"{debugStr} --Execute Add HasComplete and Remove running");
-
                         }
                         LogInfoWriter.GetInstance().Info($"{debugStr} --Execute End");
                     }
                 }
 
-                LogInfoWriter.GetInstance().Info($"{debugStr} --Check End [isFinished:{_isFinished}, taskInfoList:{_taskInfoList.Count()}, hasCompleteTaskInfoList:{_hasCompleteTaskInfoList.Count()}, runningTaskInfoDic:{_runningTaskInfoDic.Count()}]");
+                LogInfoWriter.GetInstance().Info($"{debugStr} --Check End [taskInfoList:{_taskInfoList.Count()}, hasCompleteTaskInfoList:{_hasCompleteTaskInfoList.Count()}, runningTaskInfoDic:{_runningTaskInfoDic.Count()}]");
             }
         }
     }

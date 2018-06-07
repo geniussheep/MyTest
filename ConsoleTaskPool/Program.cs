@@ -128,21 +128,23 @@ namespace ConsoleTaskPool
             var lst = new List<TaskModel>();
             for (var i = 0; i < 100; i++)
             {
-                var s = rnd.Next(10);
+                var s = rnd.Next(4,10);
+
                 var j = i;
+                var isException = s % 4 == 0;
+
                 var testTaskModel = new TaskModel(new Action(() =>
                 {
-                    var isException = s % 4 == 0;
-                    LogInfoWriter.GetInstance().Info($"Thread -- {Thread.CurrentThread.ManagedThreadId} -- 第{j}个任务（用时{s}秒）已经开始 " + (isException ? "" : "有异常"));
+                    LogInfoWriter.GetInstance().Info($"Thread -- {Thread.CurrentThread.ManagedThreadId} -- 第{j}个任务（用时{s}秒）{(isException ? "有异常" : "")}  已经开始 " );
                     Thread.Sleep(s * 1000);
-                    LogInfoWriter.GetInstance().Info($"Thread -- {Thread.CurrentThread.ManagedThreadId} -- 第{j}个任务（用时{s}秒）已经结束");
+                    LogInfoWriter.GetInstance().Info($"Thread -- {Thread.CurrentThread.ManagedThreadId} -- 第{j}个任务（用时{s}秒）{(isException ? "有异常" : "")}  已经结束");
                     if (isException)
                     {
                         throw new Exception("this task is failed");
                     }
                 }))
                 {
-                    TaskName = i.ToString(),
+                    TaskName = $"第{j}个任务（用时{s}秒）{(isException ? "有异常" : "")}",
                 };
                 lst.Add(testTaskModel);
             }
