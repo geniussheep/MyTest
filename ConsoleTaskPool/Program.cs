@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Benlai.Common;
 using ConsoleTaskPool.QueuePool;
+using ConsoleTaskPool.ScheduleTask;
 using ConsoleTaskPool.TaskPoolService;
 
 namespace ConsoleTaskPool
@@ -119,22 +120,32 @@ namespace ConsoleTaskPool
 
     static void Main(string[] args)
         {
-            TaskPoolServiceRun();
+//            TaskPoolServiceRun();
+            ScheduleTaskRun();
         }
 
         static void TaskPoolServiceRun()
         {
             var rnd = new Random();
             var lst = new List<TaskModel>();
+            var taskPool = new TaskPool(5, 4);
+            taskPool.OnCancelled += () =>
+            {
+                LogInfoWriter.GetInstance().Info($"Thread -- {Thread.CurrentThread.ManagedThreadId} -- On Cancelled");
+            };
             for (var i = 0; i < 100; i++)
             {
                 var s = rnd.Next(4,10);
 
                 var j = i;
-                var isException = s % 4 == 0;
-
+                var isException = false;//s % 4 == 0;
+                var isCancel = i == 10;
                 var testTaskModel = new TaskModel(new Action(() =>
                 {
+                    if (isCancel)
+                    {
+                        taskPool.Cancel();
+                    }
                     LogInfoWriter.GetInstance().Info($"Thread -- {Thread.CurrentThread.ManagedThreadId} -- 第{j}个任务（用时{s}秒）{(isException ? "有异常" : "")}  已经开始 " );
                     Thread.Sleep(s * 1000);
                     LogInfoWriter.GetInstance().Info($"Thread -- {Thread.CurrentThread.ManagedThreadId} -- 第{j}个任务（用时{s}秒）{(isException ? "有异常" : "")}  已经结束");
@@ -148,9 +159,41 @@ namespace ConsoleTaskPool
                 };
                 lst.Add(testTaskModel);
             }
-            var taskPool = new TaskPool(lst,5,4);
+
+            taskPool.SetTaskInfoList(lst);
             taskPool.Start();
+
+            Console.WriteLine();
             Console.ReadLine();
+        }
+
+        static void ScheduleTaskRun()
+        {
+            var 测试任务 = new Action(() =>
+            {
+                var j = 1;
+                var s = 2;
+                Console.WriteLine($"ThreadId{Thread.CurrentThread.ManagedThreadId}--第{j}个任务（用时{s}秒）已经开始 ");
+                Thread.Sleep(s * 1000);
+                Console.WriteLine($"ThreadId{Thread.CurrentThread.ManagedThreadId}--第{j}个任务（用时{s}秒）已经结束");
+            });
+
+            var scheduleTask =
+                new ScheduleTask.ScheduleTask(TriggerBuilder.WithDailyExecution(1,0,0), new ScheduleTask.ScheduleTask.Job(测试任务));
+
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    Thread.Sleep(1000);
+                Console.WriteLine($"ThreadId{Thread.CurrentThread.ManagedThreadId}-- DT:{DateTime.Now:HH:mm:ss} ");
+
+                }
+            });
+            scheduleTask.Start();
+            Console.ReadLine();
+
+           
         }
 
         static void TaskPoolRun()
@@ -196,7 +239,6 @@ namespace ConsoleTaskPool
             t4.Start();
             t5.Start();
             t6.Start();
-
             Console.ReadLine();
         }
 

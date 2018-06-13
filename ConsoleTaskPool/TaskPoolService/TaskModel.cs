@@ -8,7 +8,6 @@ namespace ConsoleTaskPool.TaskPoolService
         private bool _isFailed;
         private bool _isCompleted;
         private Exception _taskException;
-        private readonly Action _taskAction;
 
         public bool IsFailed => _isFailed;
 
@@ -18,10 +17,7 @@ namespace ConsoleTaskPool.TaskPoolService
 
         public string TaskName { get; set; }
 
-        public TaskModel(Action taskAction)
-        {
-            _taskAction = taskAction;
-        }
+        public Action TaskAction { get; set; }
 
         public void ExecuteFailed(Exception exception)
         {
@@ -34,9 +30,19 @@ namespace ConsoleTaskPool.TaskPoolService
             _isCompleted = true;
         }
 
-        public void ExecuteAction()
+        public TaskModel()
         {
-            _taskAction?.Invoke();
+        }
+
+        public TaskModel(Action taskAction)
+        {
+            TaskAction = taskAction;
+        }
+
+        public TaskModel(String taskName,Action taskAction)
+        {
+            TaskName = taskName;
+            TaskAction = taskAction;
         }
     }
 }

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Benlai.AutoPublish.Utils.Task;
 
-namespace TestTask
+namespace ConsoleTaskPool.ScheduleTask
 {
     /// <summary>;
     /// 周期性的执行计划
@@ -20,8 +15,8 @@ namespace TestTask
         /// <param name="period">;周期时间</param>;
         public CycExecution(DateTime shedule, TimeSpan period)
         {
-            m_schedule = shedule;
-            m_period = period;
+            _schedule = shedule;
+            _period = period;
         }
 
 
@@ -31,14 +26,14 @@ namespace TestTask
         /// <param name="period">;周期时间</param>;
         public CycExecution(TimeSpan period)
         {
-            m_schedule = DateTime.Now;
-            m_period = period;
+            _schedule = DateTime.Now;
+            _period = period;
         }
 
 
-        private DateTime m_schedule;
+        private DateTime _schedule;
 
-        private TimeSpan m_period;
+        private TimeSpan _period;
 
         #region ISchedule 成员
 
@@ -46,7 +41,7 @@ namespace TestTask
         {
             get
             {
-                long ms = (m_schedule.Ticks - DateTime.Now.Ticks) / 10000;
+                long ms = (_schedule.Ticks - DateTime.Now.Ticks) / 10000;
                 if (ms < 0) ms = 0;
                 return ms;
             }
@@ -56,23 +51,15 @@ namespace TestTask
         {
             get
             {
-                // TODO:  添加 CycExecution.ExecutionTime getter 实现
-                return m_schedule;
+                return _schedule;
             }
             set
             {
-                m_schedule = value;
+                _schedule = value;
             }
         }
 
-        public long Period
-        {
-            get
-            {
-                // TODO:  添加 CycExecution.Period getter 实现
-                return m_period.Ticks / 10000;
-            }
-        }
+        public long Period => _period.Ticks / 10000;
         #endregion
     }
 

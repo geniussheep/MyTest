@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TestTask
+namespace ConsoleTaskPool.ScheduleTask
 {
     public interface ISchedule
     {

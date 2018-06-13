@@ -64,8 +64,13 @@
     <Compile Include="QueuePool\QueueModel.cs" />
     <Compile Include="QueuePool\QueueService.cs" />
     <Compile Include="QueuePool\QueueServicePool.cs" />
-    <Compile Include="TaskPoolService\OnAfterStartTaskEventHandler.cs" />
-    <Compile Include="TaskPoolService\OnBeforeStartTaskEventHandler.cs" />
+    <Compile Include="ScheduleTask\CycExecution.cs" />
+    <Compile Include="ScheduleTask\DailyExecution.cs" />
+    <Compile Include="ScheduleTask\ISchedule.cs" />
+    <Compile Include="ScheduleTask\ScheduleTask.cs" />
+    <Compile Include="ScheduleTask\TriggerBuilder.cs" />
+    <Compile Include="TaskPoolService\OnStopTaskEventHandler.cs" />
+    <Compile Include="TaskPoolService\OnExecuteTaskEventHandler.cs" />
     <Compile Include="TaskPoolService\OnExceptionOccurredEventHandler.cs" />
     <Compile Include="TaskPoolService\TaskPool.cs" />
     <Compile Include="TaskPoolService\TaskModel.cs" />
