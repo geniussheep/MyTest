@@ -101,6 +101,7 @@
     <Compile Include="Thread.cs" />
     <Compile Include="Yield.cs" />
     <Compile Include="基元线程同步.cs" />
+    <Compile Include="嵌套类.cs" />
     <Compile Include="替代反射调用的几种方式及性能测试.cs" />
     <Compile Include="递归与尾递归.cs" />
   </ItemGroup>
